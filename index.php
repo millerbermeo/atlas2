@@ -195,10 +195,10 @@
 
             <div class="container mt-5">
                 <label for="selectColas">Selecciona una cola:</label>
-                <select id="selectColas" class="form-control" style="width: 90%;"></select>
+                <select id="selectColas" class="form-control" style="width: 94%; margin-bottom: 10px; margin-top: 5px"></select>
 
                 <label for="selectEstado" class="mt-3">Selecciona un estado:</label>
-                <select id="selectEstado" class="form-control" style="width: 90%;">
+                <select id="selectEstado" class="form-control" style="width: 94%; margin-top: 5px">
                     <option value="">Selecciona una opción</option>
                     <option value="A">Activo</option>
                     <option value="I">Inactivo</option>

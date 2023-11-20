@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(data => {
+            console.log(data)
             const opcionVacia = document.createElement('option');
             opcionVacia.textContent = 'Selecciona una opción'; // Mensaje que se mostrará
             selectColas.appendChild(opcionVacia);
