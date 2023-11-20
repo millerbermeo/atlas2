@@ -193,20 +193,24 @@
                 </div>
             </div>
 
-            <label for="selectColas">Selecciona una cola:</label>
-            <select id="selectColas"></select>
+            <div class="container mt-5">
+                <label for="selectColas">Selecciona una cola:</label>
+                <select id="selectColas" class="form-control" style="width: 90%;"></select>
 
-            <label for="selectEstado">Selecciona un estado:</label>
-            <select id="selectEstado">
-            <option value=""></option>
-                <option value="A">Activo</option>
-                <option value="I">Inactivo</option>
-                <option value="T">Terminado</option>
-            </select>
+                <label for="selectEstado" class="mt-3">Selecciona un estado:</label>
+                <select id="selectEstado" class="form-control" style="width: 90%;">
+                    <option value="">Selecciona una opción</option>
+                    <option value="A">Activo</option>
+                    <option value="I">Inactivo</option>
+                    <option value="T">Terminado</option>
+                </select>
+            </div>
 
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; width: 1000px;">
+            <div style="">
+                <div style="max-width: 100%;">
                 <div id="chartsContainer" style="max-width: 600px; margin-bottom: 100px">
+                </div>
                 </div>
 
 

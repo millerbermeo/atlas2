@@ -88,7 +88,23 @@ document.addEventListener('DOMContentLoaded', function () {
     function agregarContenedorEstado(estado) {
         const contenedor = document.createElement('div');
         contenedor.classList.add('estado-container'); // Estilo opcional
-        contenedor.innerHTML = `<h2>Estado ${estado}</h2>`;
+        contenedor.style.marginTop = "40px"
+        contenedor.style.marginLeft = "20px"
+        contenedor.style.width = "150%"
+        contenedor.style.display="grid"
+        contenedor.style.placeItems = "center"
+
+
+
+
+        if (estado == "A") {
+            contenedor.innerHTML = `<h2>Campañas Activas</h2>`;
+        }else if (estado == "I") {
+            contenedor.innerHTML = `<h2>Campañas Inactivas</h2>`;
+        }  else {
+            contenedor.innerHTML = `<h2>Campañas Terminadas</h2>`;
+        }
+
         chartsContainer.appendChild(contenedor);
         return contenedor;
     }
@@ -96,18 +112,29 @@ document.addEventListener('DOMContentLoaded', function () {
     // Generar gráfico por estado
     function generarGraficoPorEstado(data, estado) {
         const estadoContainer = agregarContenedorEstado(estado);
-
+    
         data.forEach(apiData => {
             // Verificar si las propiedades necesarias no son null
             if (apiData.llamadas_completadas !== null && apiData.total_llamadas !== null) {
                 const chartContainer = agregarContenedorGrafico(estadoContainer);
+    
+                const dynamicColors = () => {
+                    // Generar valores RGB aleatorios entre 0 y 255
+                    const r = Math.floor(Math.random() * 256);
+                    const g = Math.floor(Math.random() * 256);
+                    const b = Math.floor(Math.random() * 256);
+                
+                    // Devolver el color en formato RGBA con una opacidad de 0.2
+                    return `rgba(${r}, ${g}, ${b}, 0.2)`;
+                };
+        
+                const backgroundColors = ["Completadas", "Total"].map(() => dynamicColors());
                 const chartData = {
                     labels: ["Completadas", "Total"],
-                    // labels: [`Completadas ${apiData.llamadas_completadas}`, `Total ${apiData.total_llamadas}`],
                     datasets: [{
                         label: `Estadísticas - ${estado}`,
-                        backgroundColor: ["rgba(75, 192, 192, 0.2)", "rgba(255, 99, 132, 0.2)"],
-                        borderColor: ["rgba(75, 192, 192, 1)", "rgba(255, 99, 132, 1)"],
+                        backgroundColor: backgroundColors,
+                        borderColor: backgroundColors.map(color => color.replace('0.2', '1')), // Hace los bordes más oscuros
                         borderWidth: 1,
                         data: [
                             parseInt(apiData.llamadas_completadas),
@@ -128,14 +155,15 @@ document.addEventListener('DOMContentLoaded', function () {
         estadoContainer.appendChild(contenedor);
 
         contenedor.style.position="relative"
-        contenedor.style.marginBottom="100px"
-        contenedor.style.marginTop="20px"
+        contenedor.style.marginBottom="150px"
+        contenedor.style.marginTop="40px"
+        contenedor.style.height="250px"
         // contenedor.style.border="1px solid red"
 
         const textoContainer = document.createElement('div');
         textoContainer.classList.add('texto-container'); // Clase para el contenedor de texto
         textoContainer.style.position="absolute"
-        textoContainer.style.right="-40%"
+        textoContainer.style.right="-10%"
         textoContainer.style.top="20%"
         
         contenedor.appendChild(textoContainer);
@@ -168,13 +196,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const infoContainer = document.createElement('div');
         infoContainer.classList.add('info-container'); // Clase para el contenedor de información adicional
         infoContainer.style.position = "absolute"
-        infoContainer.style.bottom = "-50%"
+        infoContainer.style.bottom = "-40%"
         contenedor.appendChild(infoContainer);
 
         infoContainer.innerHTML = `
-            <p>Campaña: <span style="font-size: 14px">${apiData.nombre_campaña}</span></p>
-            <p>Fecha de Inicio: ${apiData.fecha_inicio}</p>
-            <p>Fecha de Fin: ${apiData.fecha_fin}</p>
+        <p style="font-size: 14px;">Campaña: <span style="font-size: 14px;">${apiData.nombre_campaña}</span></p>
+        <p style="font-size: 14px;">Fecha de Inicio: ${apiData.fecha_inicio}</p>
+        <p style="font-size: 14px;">Fecha de Fin: ${apiData.fecha_fin}</p>
         `;
     }
 });
