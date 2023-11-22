@@ -90,20 +90,26 @@ document.addEventListener('DOMContentLoaded', function () {
         const contenedor = document.createElement('div');
         contenedor.classList.add('estado-container'); // Estilo opcional
         contenedor.style.marginTop = "40px"
-        contenedor.style.marginLeft = "20px"
-        contenedor.style.width = "150%"
-        contenedor.style.display="grid"
-        contenedor.style.placeItems = "center"
+        // contenedor.style.marginLeft = "20px"
+        contenedor.style.display="flex"
+    
+        contenedor.style.justifyContent="center"
+        contenedor.style.alignItems="flex-start"
+        contenedor.style.flexWrap ="wrap"
+        contenedor.style.gap ="100px"
 
 
 
 
         if (estado == "A") {
-            contenedor.innerHTML = `<h2>Campañas Activas</h2>`;
+            contenedor.innerHTML = `<h2 style="position: absolute; left: 55%; transform: translateX(-50%);">Campañas Activas</h2>
+            `;
         }else if (estado == "I") {
-            contenedor.innerHTML = `<h2>Campañas Inactivas</h2>`;
+            contenedor.innerHTML = `<h2 style="position: absolute; left: 55%; transform: translateX(-50%);">Campañas Activas</h2>
+            `;
         }  else {
-            contenedor.innerHTML = `<h2>Campañas Terminadas</h2>`;
+            contenedor.innerHTML = `<h2 style="position: absolute; left: 55%; transform: translateX(-50%);">Campañas Activas</h2>
+            `;
         }
 
         chartsContainer.appendChild(contenedor);
@@ -187,8 +193,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Agregar texto horizontal en el contenedor de texto
         const textoContainer = contenedor.querySelector('.texto-container');
         textoContainer.innerHTML = `
-            <p>Llamadas Completadas: ${chartData.datasets[0].data[0]}</p>
-            <p>Total de Llamadas: ${chartData.datasets[0].data[1]}</p>
+            <p><strong>Llamadas Completadas:</strong> ${chartData.datasets[0].data[0]}</p>
+            <p><strong>Total de Llamadas:</strong> ${chartData.datasets[0].data[1]}</p>
         `;
     }
 
@@ -201,9 +207,9 @@ document.addEventListener('DOMContentLoaded', function () {
         contenedor.appendChild(infoContainer);
 
         infoContainer.innerHTML = `
-        <p style="font-size: 14px;">Campaña: <span style="font-size: 14px;">${apiData.nombre_campaña}</span></p>
-        <p style="font-size: 14px;">Fecha de Inicio: ${apiData.fecha_inicio}</p>
-        <p style="font-size: 14px;">Fecha de Fin: ${apiData.fecha_fin}</p>
+        <p style="font-size: 14px;"><strong>Nombre de Campaña:</strong> <span style="font-size: 14px;">${apiData.nombre_campaña}</span></p>
+        <p style="font-size: 14px;"><strong>Fecha de Inicio:</strong> ${apiData.fecha_inicio}</p>
+        <p style="font-size: 14px;"><strong>Fecha de Fin:</strong> ${apiData.fecha_fin}</p>
         `;
     }
 });
